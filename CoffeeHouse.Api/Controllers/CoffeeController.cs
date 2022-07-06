@@ -22,7 +22,7 @@ namespace CoffeeHouse.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public Coffee GetCoffee(int id)
+        public Coffee FindCoffee(int id)
         {
             var coffee = _context.Coffees.Find(id);
             if (coffee == null)
@@ -38,14 +38,14 @@ namespace CoffeeHouse.Api.Controllers
         }
 
         [HttpPut]
-        public void PutCoffee(Coffee coffee)
+        public void ChangeCoffeeInformation(Coffee coffee)
         {
             _context.Update(coffee);
             _context.SaveChanges();
         }
 
         [HttpDelete("{id}")]
-        public void DeleteCoffee(int id)
+        public void RemoveCoffee(int id)
         {
             var dbCoffee =  _context.Coffees.Find(id);
             _context.Coffees.Remove(dbCoffee);
