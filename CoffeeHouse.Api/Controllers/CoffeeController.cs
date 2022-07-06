@@ -31,7 +31,7 @@ namespace CoffeeHouse.Api.Controllers
         }
 
         [HttpPost]
-        public void PostCoffee(Coffee coffee)
+        public void AddNewCoffee(Coffee coffee)
         {
             _context.Coffees.Add(coffee);
             _context.SaveChanges();     
