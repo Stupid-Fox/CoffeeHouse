@@ -38,10 +38,9 @@ namespace CoffeeHouse.Api.Controllers
         }
 
         [HttpPut]
-        public void Put(Coffee request)
+        public void PutCup(Coffee coffee)
         {
-            request.Cost = 10;
-            _context.Update(request);
+            _context.Update(coffee);
             _context.SaveChanges();
         }
 
