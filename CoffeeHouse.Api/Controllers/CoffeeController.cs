@@ -17,57 +17,59 @@ namespace CoffeeHouse.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Coffee>>> GetAll()
+        public IEnumerable<Coffee> GetAll()
         {
-            return Ok(await _context.Coffees.ToListAsync());
+            return _context.Coffees.ToList();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<Coffee>>> Get(int id)
+        public Coffee Get(int id)
         {
-            var coffee = await _context.Coffees.FindAsync(id);
+            var coffee = _context.Coffees.Find(id);
             if (coffee == null)
-                return NotFound();
-            return Ok(coffee);
+                throw new ArgumentNullException("Object cannot be null", nameof(coffee));
+            return coffee;
         }
 
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<Coffee>>> Post(Coffee coffee)
+        public void Post(Coffee coffee)
         {
             _context.Coffees.Add(coffee);
             _context.SaveChanges();
-            return Ok(coffee);
+         
         }
 
         [HttpPut]
-        public async Task<ActionResult<IEnumerable<Coffee>>> Put(Coffee request)
+        public void Put(Coffee request)
         {
-            var dbCoffee = await _context.Coffees.FindAsync(request.Id);
-            if (dbCoffee == null)
-                return BadRequest("Coffee not found");
 
-            dbCoffee.Cost = request.Cost;
-            dbCoffee.MakeTime = request.MakeTime;
-            dbCoffee.Name = request.Name;
 
-            _context.Entry(dbCoffee).State = EntityState.Modified;
+
+
+            request.Cost = 10;
+
+            _context.Update(request);
+
             _context.SaveChanges();
 
-          
-            return Ok(dbCoffee);
+        
+            
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<IEnumerable<Coffee>>> Delete(int id)
+        public async void Delete(int id)
         {
-            var dbCoffee = await _context.Coffees.FindAsync(id);
-            if (dbCoffee == null)
-                return BadRequest("Coffee not found");
-
+            var dbCoffee =  _context.Coffees.Find(id);
             _context.Coffees.Remove(dbCoffee);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+            if (dbCoffee == null)
+            {
+                throw new ArgumentNullException("Object cannot be null", nameof(dbCoffee));
+            }
+               
 
-            return Ok();
+            
+
         }
     }
 
