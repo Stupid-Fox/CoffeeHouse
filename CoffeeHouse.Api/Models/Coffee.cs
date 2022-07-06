@@ -7,8 +7,5 @@
         public int Cost { get; set; }
         public int Temperature { get; set; }
         public int MakeTime { get; set; }
-
-
-
     }
 }

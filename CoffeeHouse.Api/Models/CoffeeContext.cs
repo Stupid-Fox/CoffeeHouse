@@ -5,14 +5,11 @@ namespace CoffeeHouse.Api.Models
 {
     public class CoffeeContext : DbContext
     {
-     
         public DbSet<Coffee> Coffees { get; set; } = null!;
         public CoffeeContext(DbContextOptions<CoffeeContext> options)
             : base(options)
         {
-            Database.EnsureCreated();   
-
-            
+            Database.EnsureCreated();           
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

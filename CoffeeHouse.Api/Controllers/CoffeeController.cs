@@ -10,7 +10,6 @@ namespace CoffeeHouse.Api.Controllers
     public class CoffeeController : ControllerBase
     {
         private readonly CoffeeContext _context;
-
         public CoffeeController(CoffeeContext context)
         {
             _context = context;
@@ -35,42 +34,27 @@ namespace CoffeeHouse.Api.Controllers
         public void Post(Coffee coffee)
         {
             _context.Coffees.Add(coffee);
-            _context.SaveChanges();
-         
+            _context.SaveChanges();     
         }
 
         [HttpPut]
         public void Put(Coffee request)
         {
-
-
-
-
             request.Cost = 10;
-
             _context.Update(request);
-
             _context.SaveChanges();
-
-        
-            
         }
 
         [HttpDelete("{id}")]
-        public async void Delete(int id)
+        public void Delete(int id)
         {
             var dbCoffee =  _context.Coffees.Find(id);
             _context.Coffees.Remove(dbCoffee);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
             if (dbCoffee == null)
             {
                 throw new ArgumentNullException("Object cannot be null", nameof(dbCoffee));
             }
-               
-
-            
-
         }
     }
-
 }
