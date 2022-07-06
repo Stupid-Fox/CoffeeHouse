@@ -16,13 +16,13 @@ namespace CoffeeHouse.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Coffee> GetAll()
+        public IEnumerable<Coffee> GetAllCoffes()
         {
             return _context.Coffees.ToList();
         }
 
         [HttpGet("{id}")]
-        public Coffee Get(int id)
+        public Coffee GetCoffee(int id)
         {
             var coffee = _context.Coffees.Find(id);
             if (coffee == null)
@@ -31,21 +31,21 @@ namespace CoffeeHouse.Api.Controllers
         }
 
         [HttpPost]
-        public void Post(Coffee coffee)
+        public void PostCoffee(Coffee coffee)
         {
             _context.Coffees.Add(coffee);
             _context.SaveChanges();     
         }
 
         [HttpPut]
-        public void PutCup(Coffee coffee)
+        public void PutCoffee(Coffee coffee)
         {
             _context.Update(coffee);
             _context.SaveChanges();
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void DeleteCoffee(int id)
         {
             var dbCoffee =  _context.Coffees.Find(id);
             _context.Coffees.Remove(dbCoffee);
