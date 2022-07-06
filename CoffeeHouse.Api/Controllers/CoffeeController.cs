@@ -35,7 +35,7 @@ namespace CoffeeHouse.Api.Controllers
         public async Task<ActionResult<IEnumerable<Coffee>>> Post(Coffee coffee)
         {
             _context.Coffees.Add(coffee);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
             return Ok(coffee);
         }
 
@@ -51,7 +51,9 @@ namespace CoffeeHouse.Api.Controllers
             dbCoffee.Name = request.Name;
 
             _context.Entry(dbCoffee).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
+
+          
             return Ok(dbCoffee);
         }
 
@@ -63,7 +65,7 @@ namespace CoffeeHouse.Api.Controllers
                 return BadRequest("Coffee not found");
 
             _context.Coffees.Remove(dbCoffee);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return Ok();
         }
