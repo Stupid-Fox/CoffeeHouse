@@ -16,7 +16,7 @@ namespace CoffeeHouse.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Coffee> GetAllCoffes()
+        public IEnumerable<Coffee> TakeCoffeeHouseMenu()
         {
             return _context.Coffees.ToList();
         }
