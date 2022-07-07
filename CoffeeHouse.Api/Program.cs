@@ -1,6 +1,5 @@
 using CoffeeHouse.Api.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder();
 
