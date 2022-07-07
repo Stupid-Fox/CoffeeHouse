@@ -1,15 +1,18 @@
-var builder = WebApplication.CreateBuilder(args);
+using CoffeeHouse.Api.Models;
+using Microsoft.EntityFrameworkCore;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder();
+
+string connection = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<CoffeeContext>(options => options.UseSqlServer(connection));
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -21,5 +24,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGet("/", (CoffeeContext db) => db.Coffees.ToList());
 
 app.Run();
