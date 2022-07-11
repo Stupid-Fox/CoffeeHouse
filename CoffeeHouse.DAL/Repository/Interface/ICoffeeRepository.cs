@@ -1,4 +1,5 @@
 ﻿using CoffeeHouse.Api.Models;
+using CoffeeHouse.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,10 @@ namespace CoffeeHouse.DAL.Controllers
 {
     public interface ICoffeeRepository 
     {
-
-        IEnumerable<Coffee> GetAll();
-        Coffee GetById(int id);
-        IEnumerable<Coffee> Find(Func<Coffee, Boolean> predicate);
-        void Create(Coffee item);
-        void Update(Coffee item);
-        void Delete(int id);
+        IEnumerable<Coffee> TakeCoffeeHouseMenu();
+        Coffee FindCoffee(int id);
+        void AddNewCoffee(Coffee item);
+        void ChangeCoffeeInformation(Coffee item);
+        void RemoveCoffee(int id);
     }
 }

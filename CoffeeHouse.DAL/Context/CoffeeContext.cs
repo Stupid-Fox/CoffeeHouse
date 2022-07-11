@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace CoffeeHouse.Api.Models
+namespace CoffeeHouse.DAL.Models
 {
     public class CoffeeContext : DbContext
     {
-        public DbSet<Coffee> Coffes { get; set; } = null!;
+        public DbSet<Coffee> Coffees { get; set; } = null!;
         public CoffeeContext(DbContextOptions<CoffeeContext> options)
             : base(options)
         {
