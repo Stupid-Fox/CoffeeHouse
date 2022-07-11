@@ -1,4 +1,4 @@
-﻿namespace CoffeeHouse.Api.Models
+﻿namespace CoffeeHouse.DAL.Models
 {
     public class Coffee
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace CoffeeHouse.Api.Models
+namespace CoffeeHouse.DAL.Models
 {
     public class CoffeeContext : DbContext
     {
