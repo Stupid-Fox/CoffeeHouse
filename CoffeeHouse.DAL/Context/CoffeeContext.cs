@@ -5,7 +5,7 @@ namespace CoffeeHouse.Api.Models
 {
     public class CoffeeContext : DbContext
     {
-        public DbSet<Coffee> Coffees { get; set; } = null!;
+        public DbSet<Coffee> Coffes { get; set; } = null!;
         public CoffeeContext(DbContextOptions<CoffeeContext> options)
             : base(options)
         {

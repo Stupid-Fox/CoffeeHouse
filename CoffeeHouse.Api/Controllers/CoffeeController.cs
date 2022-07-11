@@ -9,51 +9,40 @@ namespace CoffeeHouse.Api.Controllers
     [ApiController]
     public class CoffeeController : ControllerBase
     {
-        private readonly CoffeeContext _context;
-        public CoffeeController(CoffeeContext context)
+       
+        public CoffeeController()
         {
-            _context = context;
+           
         }
 
         [HttpGet]
-        public IEnumerable<Coffee> TakeCoffeeHouseMenu()
+        public void TakeCoffeeHouseMenu()
         {
-            return _context.Coffees.ToList();
+            
         }
 
         [HttpGet("{id}")]
-        public Coffee FindCoffee(int id)
+        public void FindCoffee(int id)
         {
-            var coffee = _context.Coffees.Find(id);
-            if (coffee == null)
-                throw new ArgumentNullException("Object cannot be null", nameof(coffee));
-            return coffee;
+
         }
 
         [HttpPost]
-        public void AddNewCoffee(Coffee coffee)
+        public void AddNewCoffee()
         {
-            _context.Coffees.Add(coffee);
-            _context.SaveChanges();     
+
         }
 
         [HttpPut]
-        public void ChangeCoffeeInformation(Coffee coffee)
+        public void ChangeCoffeeInformation()
         {
-            _context.Update(coffee);
-            _context.SaveChanges();
+           
         }
 
         [HttpDelete("{id}")]
-        public void RemoveCoffee(int id)
+        public void RemoveCoffee()
         {
-            var dbCoffee =  _context.Coffees.Find(id);
-            _context.Coffees.Remove(dbCoffee);
-            _context.SaveChanges();
-            if (dbCoffee == null)
-            {
-                throw new ArgumentNullException("Object cannot be null", nameof(dbCoffee));
-            }
+            
         }
     }
 }
