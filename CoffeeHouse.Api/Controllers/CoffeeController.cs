@@ -1,4 +1,7 @@
-﻿using CoffeeHouse.Api.Models;
+﻿using AutoMapper;
+using CoffeeHouse.Api.ViewModels;
+using CoffeeHouse.BLL.Models;
+using CoffeeHouse.BLL.Services.Intarfeces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,40 +12,46 @@ namespace CoffeeHouse.Api.Controllers
     [ApiController]
     public class CoffeeController : ControllerBase
     {
-       
-        public CoffeeController()
+        private readonly IMapper _mapper;
+        private readonly ICoffeeService _service;
+        public CoffeeController(ICoffeeService service, IMapper mapper)
         {
-           
+            _service = service;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public void TakeCoffeeHouseMenu()
+        public IEnumerable<CoffeeViewModel> TakeCoffeeHouseMenu()
         {
-            
+            var coffeeHouseMenu = _service.TakeCoffeeHouseMenu();
+            return _mapper.Map<IEnumerable<CoffeeModel>, IEnumerable<CoffeeViewModel>>(coffeeHouseMenu);
         }
 
         [HttpGet("{id}")]
-        public void FindCoffee(int id)
+        public CoffeeViewModel FindCoffee(int id)
         {
-
+            var coffee = _service.FindCoffee(id);
+            return _mapper.Map<CoffeeModel, CoffeeViewModel>(coffee);
         }
 
         [HttpPost]
-        public void AddNewCoffee()
+        public void AddNewCoffee(CoffeeViewModel item)
         {
-
+            var newCoffee = _mapper.Map<CoffeeViewModel, CoffeeModel>(item);
+            _service.AddNewCoffee(newCoffee);
         }
 
         [HttpPut]
-        public void ChangeCoffeeInformation()
+        public void ChangeCoffeeInformation(CoffeeViewModel item)
         {
-           
+            var coffee = _mapper.Map<CoffeeViewModel, CoffeeModel>(item);
+            _service.ChangeCoffeeInformation(coffee);
         }
 
         [HttpDelete("{id}")]
-        public void RemoveCoffee()
+        public void RemoveCoffee(int id)
         {
-            
+            _service.RemoveCoffee(id);
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace CoffeeHouse.DAL.Models
+﻿namespace CoffeeHouse.Api.ViewModels
 {
-    public class CoffeeEntity
+    public class CoffeeViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
