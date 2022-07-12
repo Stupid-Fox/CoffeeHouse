@@ -12,13 +12,8 @@ namespace CoffeeHouse.Api.Controllers
     [ApiController]
     public class CoffeeController : ControllerBase
     {
-
-
-
         private readonly IMapper _mapper;
-
         private readonly ICoffeeService _service;
-
         public CoffeeController(ICoffeeService service, IMapper mapper)
         {
             _service = service;
@@ -49,8 +44,8 @@ namespace CoffeeHouse.Api.Controllers
         [HttpPut]
         public void ChangeCoffeeInformation(CoffeeViewModel item)
         {
-            var pet = _mapper.Map<CoffeeViewModel, CoffeeModel>(item);
-            _service.ChangeCoffeeInformation(pet);
+            var coffee = _mapper.Map<CoffeeViewModel, CoffeeModel>(item);
+            _service.ChangeCoffeeInformation(coffee);
         }
 
         [HttpDelete("{id}")]
