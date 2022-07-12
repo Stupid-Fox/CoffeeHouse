@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeHouse.BLL.Models
 {
-    internal class CoffeeModel
+    public class CoffeeModel
     {
 
         public int Id { get; set; }

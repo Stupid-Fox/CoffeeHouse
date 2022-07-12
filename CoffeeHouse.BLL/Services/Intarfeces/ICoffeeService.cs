@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeHouse.BLL.Services.Intarfeces
 {
-    internal interface ICoffeeService
+    public interface ICoffeeService
     {
         IEnumerable<CoffeeModel> TakeCoffeeHouseMenu();
         CoffeeModel FindCoffee(int id);
