@@ -1,6 +1,6 @@
 ﻿namespace CoffeeHouse.DAL.Models
 {
-    public class Coffee
+    public class CoffeeEntity
     {
         public int Id { get; set; }
         public string Name { get; set; } = "Coffee";

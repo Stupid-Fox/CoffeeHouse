@@ -10,10 +10,10 @@ namespace CoffeeHouse.DAL.Controllers
 {
     public interface ICoffeeRepository 
     {
-        IEnumerable<Coffee> TakeCoffeeHouseMenu();
-        Coffee FindCoffee(int id);
-        void AddNewCoffee(Coffee item);
-        void ChangeCoffeeInformation(Coffee item);
+        IEnumerable<CoffeeEntity> TakeCoffeeHouseMenu();
+        CoffeeEntity FindCoffee(int id);
+        void AddNewCoffee(CoffeeEntity item);
+        void ChangeCoffeeInformation(CoffeeEntity item);
         void RemoveCoffee(int id);
     }
 }
