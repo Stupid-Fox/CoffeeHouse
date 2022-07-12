@@ -18,13 +18,13 @@ namespace CoffeeHouse.DAL.Repository
         }
 
      
-        public IEnumerable<Coffee> TakeCoffeeHouseMenu()
+        public IEnumerable<CoffeeEntity> TakeCoffeeHouseMenu()
         {
             return _context.Coffees.ToList();
         }
 
         
-        public Coffee FindCoffee(int id)
+        public CoffeeEntity FindCoffee(int id)
         {
             var coffee = _context.Coffees.Find(id);
             if (coffee == null)
@@ -33,14 +33,14 @@ namespace CoffeeHouse.DAL.Repository
         }
 
    
-        public void AddNewCoffee(Coffee coffee)
+        public void AddNewCoffee(CoffeeEntity coffee)
         {
             _context.Coffees.Add(coffee);
             _context.SaveChanges();
         }
 
       
-        public void ChangeCoffeeInformation(Coffee coffee)
+        public void ChangeCoffeeInformation(CoffeeEntity coffee)
         {
             _context.Update(coffee);
             _context.SaveChanges();

@@ -5,7 +5,7 @@ namespace CoffeeHouse.DAL.Models
 {
     public class CoffeeContext : DbContext
     {
-        public DbSet<Coffee> Coffees { get; set; } = null!;
+        public DbSet<CoffeeEntity> Coffees { get; set; } = null!;
         public CoffeeContext(DbContextOptions<CoffeeContext> options)
             : base(options)
         {
@@ -13,10 +13,10 @@ namespace CoffeeHouse.DAL.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Coffee>().HasData(
-                    new Coffee { Id = 1, Name = "Latte" , Cost = 12},
-                    new Coffee { Id = 2, Name = "Capuchino", Cost =15},
-                    new Coffee { Id = 3, Name = "Coffee" , Cost=8 }
+            modelBuilder.Entity<CoffeeEntity>().HasData(
+                    new CoffeeEntity { Id = 1, Name = "Latte" , Cost = 12},
+                    new CoffeeEntity { Id = 2, Name = "Capuchino", Cost =15},
+                    new CoffeeEntity { Id = 3, Name = "Coffee" , Cost=8 }
             );
         }
     }
