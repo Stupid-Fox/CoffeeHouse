@@ -5,12 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using CoffeeHouse.DAL.Di;
 
 namespace CoffeeHouse.DAL.Repository
 {
     public class CoffeeRepository : ICoffeeRepository
     {
         private  CoffeeContext _context;
+
+        public void ConfigureServices(IServiceCollection services, IConfiguration config)
+        {
+            services.AddDALDependencies(config);
+        }
 
         public void CoffeeController(CoffeeContext context)
         {

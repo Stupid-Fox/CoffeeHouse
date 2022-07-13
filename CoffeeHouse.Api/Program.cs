@@ -1,8 +1,12 @@
+using CoffeeHouse.BLL.Services;
+using CoffeeHouse.BLL.Services.Intarfeces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder();
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddSingleton<ICoffeeService, CoffeeService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

@@ -15,10 +15,6 @@ namespace CoffeeHouse.Api.Controllers
     {
         private readonly IMapper _mapper;
         private readonly ICoffeeService _service;
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddTransient<ICoffeeService, CoffeeService>();
-        }
         public CoffeeController(ICoffeeService service, IMapper mapper)
         {
             _service = service;
