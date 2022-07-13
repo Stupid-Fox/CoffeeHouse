@@ -19,6 +19,11 @@ namespace CoffeeHouse.BLL.Di
         {
             services.AddDALDependencies(config);
             services.AddTransient<ICoffeeService, CoffeeService>();
-        }   
+        }
+        public static void AddDatabase(this IServiceCollection services, IConfiguration config)
+        {
+            services.AddDatabase(config);
+           
+        }
     }
 }
