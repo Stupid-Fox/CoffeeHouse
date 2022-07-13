@@ -22,7 +22,11 @@ namespace CoffeeHouse.BLL.Services
 
         private readonly ICoffeeRepository _repository;
 
-     
+        public void ConfigureServices(IServiceCollection services, IConfiguration config)
+        {
+            services.AddDALDependencies(config);
+        }
+
         public CoffeeService(ICoffeeRepository repository, IMapper mapper)
         {
             _repository = repository;
