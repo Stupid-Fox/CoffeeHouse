@@ -17,10 +17,7 @@ namespace CoffeeHouse.Api.Controllers
         private readonly IMapper _mapper;
         private readonly ICoffeeService _service;
 
-        public void ConfigureServices(IServiceCollection services, IConfiguration config)
-        {
-            services.AddBLLDependencies(config);
-        }
+       
 
         public CoffeeController(ICoffeeService service, IMapper mapper)
         {

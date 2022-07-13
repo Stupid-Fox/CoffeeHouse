@@ -1,12 +1,9 @@
 ﻿using CoffeeHouse.DAL.Controllers;
+using CoffeeHouse.DAL.Models;
 using CoffeeHouse.DAL.Repository;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoffeeHouse.DAL.Di
 {
@@ -17,5 +14,14 @@ namespace CoffeeHouse.DAL.Di
         {
             services.AddTransient<ICoffeeRepository, CoffeeRepository>();
         }
+        public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
+        {
+            string connection = configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<CoffeeContext>(options => options.UseSqlServer(connection));
+            services.AddScoped<ICoffeeRepository, CoffeeRepository>();
+
+            return services;
+        }
+
     }
 }

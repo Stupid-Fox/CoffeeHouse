@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace CoffeeHouse.DAL.Models
 {
@@ -9,14 +8,14 @@ namespace CoffeeHouse.DAL.Models
         public CoffeeContext(DbContextOptions<CoffeeContext> options)
             : base(options)
         {
-            Database.EnsureCreated();           
+            Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CoffeeEntity>().HasData(
-                    new CoffeeEntity { Id = 1, Name = "Latte" , Cost = 12},
-                    new CoffeeEntity { Id = 2, Name = "Capuchino", Cost =15},
-                    new CoffeeEntity { Id = 3, Name = "Coffee" , Cost=8 }
+                    new CoffeeEntity { Id = 1, Name = "Latte", Cost = 12 },
+                    new CoffeeEntity { Id = 2, Name = "Capuchino", Cost = 15 },
+                    new CoffeeEntity { Id = 3, Name = "Coffee", Cost = 8 }
             );
         }
     }

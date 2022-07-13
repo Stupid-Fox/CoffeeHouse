@@ -1,14 +1,8 @@
-﻿using CoffeeHouse.Api.Models;
-using CoffeeHouse.DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CoffeeHouse.DAL.Models;
 
 namespace CoffeeHouse.DAL.Controllers
 {
-    public interface ICoffeeRepository 
+    public interface ICoffeeRepository
     {
         IEnumerable<CoffeeEntity> TakeCoffeeHouseMenu();
         CoffeeEntity FindCoffee(int id);

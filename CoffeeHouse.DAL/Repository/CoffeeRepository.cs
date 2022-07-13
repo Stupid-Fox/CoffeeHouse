@@ -1,34 +1,26 @@
-﻿using CoffeeHouse.DAL.Models;
-using CoffeeHouse.DAL.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using CoffeeHouse.DAL.Di;
+﻿using CoffeeHouse.DAL.Controllers;
+using CoffeeHouse.DAL.Models;
 
 namespace CoffeeHouse.DAL.Repository
 {
     public class CoffeeRepository : ICoffeeRepository
     {
-        private  CoffeeContext _context;
+        private CoffeeContext _context;
 
-    
+
 
         public void CoffeeController(CoffeeContext context)
         {
             _context = context;
         }
 
-     
+
         public IEnumerable<CoffeeEntity> TakeCoffeeHouseMenu()
         {
             return _context.Coffees.ToList();
         }
 
-        
+
         public CoffeeEntity FindCoffee(int id)
         {
             var coffee = _context.Coffees.Find(id);
@@ -37,14 +29,14 @@ namespace CoffeeHouse.DAL.Repository
             return coffee;
         }
 
-   
+
         public void AddNewCoffee(CoffeeEntity coffee)
         {
             _context.Coffees.Add(coffee);
             _context.SaveChanges();
         }
 
-      
+
         public void ChangeCoffeeInformation(CoffeeEntity coffee)
         {
             _context.Update(coffee);

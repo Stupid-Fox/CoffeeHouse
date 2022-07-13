@@ -1,6 +1,7 @@
 ﻿using CoffeeHouse.BLL.Services;
 using CoffeeHouse.BLL.Services.Intarfeces;
 using CoffeeHouse.DAL.Controllers;
+using CoffeeHouse.DAL.Di;
 using CoffeeHouse.DAL.Repository;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +17,15 @@ namespace CoffeeHouse.BLL.Di
     {
        public static void AddBLLDependencies(this IServiceCollection services, IConfiguration config)
         {
-           services.AddTransient<ICoffeeService, CoffeeService>();
+            services.AddDALDependencies(config);       
         }
+
+        public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration config)
+        {
+            services.AddDatabase(config);
+            return services;
+        }
+
+       
     }
 }
