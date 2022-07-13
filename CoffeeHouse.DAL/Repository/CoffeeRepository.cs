@@ -15,10 +15,7 @@ namespace CoffeeHouse.DAL.Repository
     {
         private  CoffeeContext _context;
 
-        public void ConfigureServices(IServiceCollection services, IConfiguration config)
-        {
-            services.AddDALDependencies(config);
-        }
+    
 
         public void CoffeeController(CoffeeContext context)
         {

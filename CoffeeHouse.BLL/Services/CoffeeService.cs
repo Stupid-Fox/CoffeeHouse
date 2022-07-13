@@ -3,6 +3,7 @@ using CoffeeHouse.BLL.Di;
 using CoffeeHouse.BLL.Models;
 using CoffeeHouse.BLL.Services.Intarfeces;
 using CoffeeHouse.DAL.Controllers;
+using CoffeeHouse.DAL.Di;
 using CoffeeHouse.DAL.Models;
 using CoffeeHouse.DAL.Repository;
 using Microsoft.Extensions.Configuration;
@@ -20,9 +21,10 @@ namespace CoffeeHouse.BLL.Services
         private readonly IMapper _mapper;
 
         private readonly ICoffeeRepository _repository;
+
         public void ConfigureServices(IServiceCollection services, IConfiguration config)
         {
-            services.AddBLLDependencies(config);
+            services.AddDALDependencies(config);
         }
 
         public CoffeeService(ICoffeeRepository repository, IMapper mapper)
