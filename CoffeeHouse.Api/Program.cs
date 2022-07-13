@@ -1,11 +1,8 @@
-using CoffeeHouse.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder();
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
-
-builder.Services.AddDbContext<CoffeeContext>(options => options.UseSqlServer(connection));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -24,7 +21,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.MapGet("/", (CoffeeContext db) => db.Coffees.ToList());
 
 app.Run();

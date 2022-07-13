@@ -3,6 +3,8 @@ using CoffeeHouse.BLL.Models;
 using CoffeeHouse.BLL.Services.Intarfeces;
 using CoffeeHouse.DAL.Controllers;
 using CoffeeHouse.DAL.Models;
+using CoffeeHouse.DAL.Repository;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +13,15 @@ using System.Threading.Tasks;
 
 namespace CoffeeHouse.BLL.Services
 {
-    internal class CoffeeService : ICoffeeService
+    public class CoffeeService : ICoffeeService
     {
         private readonly IMapper _mapper;
 
         private readonly ICoffeeRepository _repository;
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddTransient<ICoffeeRepository, CoffeeRepository>();
+        }
 
         public CoffeeService(ICoffeeRepository repository, IMapper mapper)
         {

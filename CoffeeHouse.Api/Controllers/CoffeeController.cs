@@ -2,6 +2,7 @@
 using CoffeeHouse.Api.ViewModels;
 using CoffeeHouse.BLL.Models;
 using CoffeeHouse.BLL.Services.Intarfeces;
+using CoffeeHouse.BLL.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,10 @@ namespace CoffeeHouse.Api.Controllers
     {
         private readonly IMapper _mapper;
         private readonly ICoffeeService _service;
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddTransient<ICoffeeService, CoffeeService>();
+        }
         public CoffeeController(ICoffeeService service, IMapper mapper)
         {
             _service = service;
