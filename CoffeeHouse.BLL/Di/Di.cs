@@ -15,10 +15,11 @@ namespace CoffeeHouse.BLL.Di
 {
     public static class Di
     {
-       public static void AddBLLDependencies(this IServiceCollection services)
+       public static IServiceCollection AddBLLDependencies(this IServiceCollection services)
         {
            
             services.AddTransient<ICoffeeService, CoffeeService>();
+            return services;
         }
        
     }
