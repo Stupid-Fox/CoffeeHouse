@@ -16,9 +16,8 @@ namespace CoffeeHouse.BLL.Di
     public static class Di
     {
        public static IServiceCollection AddBLLDependencies(this IServiceCollection services)
-        {
-           
-            services.AddTransient<ICoffeeService, CoffeeService>();
+        {      
+            services.AddScoped<ICoffeeService, CoffeeService>();
             return services;
         }
        

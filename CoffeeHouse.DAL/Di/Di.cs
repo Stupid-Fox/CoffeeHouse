@@ -14,7 +14,6 @@ namespace CoffeeHouse.DAL.Di
             string connection = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<CoffeeContext>(options => options.UseSqlServer(connection));
             services.AddScoped<ICoffeeRepository, CoffeeRepository>();
-            services.AddTransient<ICoffeeRepository, CoffeeRepository>();
             return services;
         }
 
