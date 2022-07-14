@@ -15,15 +15,11 @@ namespace CoffeeHouse.BLL.Di
 {
     public static class Di
     {
-       public static void AddBLLDependencies(this IServiceCollection services, IConfiguration config)
+       public static void AddBLLDependencies(this IServiceCollection services)
         {
-            services.AddDALDependencies(config);
+           
             services.AddTransient<ICoffeeService, CoffeeService>();
         }
-        public static void AddDatabase(this IServiceCollection services, IConfiguration config)
-        {
-            services.AddDatabase(config);
-           
-        }
+       
     }
 }
