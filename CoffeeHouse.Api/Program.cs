@@ -1,7 +1,4 @@
 using CoffeeHouse.BLL.Di;
-using CoffeeHouse.BLL.Services;
-using CoffeeHouse.BLL.Services.Intarfeces;
-using CoffeeHouse.DAL.Di;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder();
