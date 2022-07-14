@@ -16,9 +16,6 @@ namespace CoffeeHouse.Api.Controllers
     {
         private readonly IMapper _mapper;
         private readonly ICoffeeService _service;
-
-       
-
         public CoffeeController(ICoffeeService service, IMapper mapper)
         {
             _service = service;

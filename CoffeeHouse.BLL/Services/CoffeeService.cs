@@ -51,6 +51,5 @@ namespace CoffeeHouse.BLL.Services
         {
             _repository.RemoveCoffee(id);
         }
-
     }
 }

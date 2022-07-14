@@ -7,15 +7,14 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CoffeeHouse.DAL.Di
 {
-    public static class Di
+    public static class DALServiceCollection
     {
-        public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
+        public static void AddDatabase(this IServiceCollection services, IConfiguration configuration)
         {
             string connection = configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<CoffeeContext>(options => options.UseSqlServer(connection));
             services.AddScoped<ICoffeeRepository, CoffeeRepository>();
-            return services;
+            services.AddDbContext<CoffeeContext>(options => options.UseSqlServer(connection));
+          
         }
-
     }
 }

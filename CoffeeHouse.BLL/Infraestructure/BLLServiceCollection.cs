@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace CoffeeHouse.BLL.Di
 {
-    public static class Di
+    public static class BLLServiceCollection
     {
-       public static IServiceCollection AddBLLDependencies(this IServiceCollection services)
+       public static void AddBLLDependencies(this IServiceCollection services, IConfiguration config)
         {      
             services.AddScoped<ICoffeeService, CoffeeService>();
-            return services;
+            services.AddDatabase(config);
         }
        
     }

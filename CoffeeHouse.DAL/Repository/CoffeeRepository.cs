@@ -6,20 +6,15 @@ namespace CoffeeHouse.DAL.Repository
     public class CoffeeRepository : ICoffeeRepository
     {
         private CoffeeContext _context;
-
-
-
         public void CoffeeController(CoffeeContext context)
         {
             _context = context;
         }
 
-
         public IEnumerable<CoffeeEntity> TakeCoffeeHouseMenu()
         {
             return _context.Coffees.ToList();
         }
-
 
         public CoffeeEntity FindCoffee(int id)
         {
@@ -29,13 +24,11 @@ namespace CoffeeHouse.DAL.Repository
             return coffee;
         }
 
-
         public void AddNewCoffee(CoffeeEntity coffee)
         {
             _context.Coffees.Add(coffee);
             _context.SaveChanges();
         }
-
 
         public void ChangeCoffeeInformation(CoffeeEntity coffee)
         {

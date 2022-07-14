@@ -8,12 +8,11 @@ var builder = WebApplication.CreateBuilder();
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDatabase(builder.Configuration).AddBLLDependencies();
 
+builder.Services.AddBLLDependencies(builder.Configuration);
 
 var app = builder.Build();
 
