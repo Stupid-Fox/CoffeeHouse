@@ -2,9 +2,7 @@
 using CoffeeHouse.Api.ViewModels;
 using CoffeeHouse.BLL.Models;
 using CoffeeHouse.BLL.Services.Intarfeces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace CoffeeHouse.Api.Controllers
 {

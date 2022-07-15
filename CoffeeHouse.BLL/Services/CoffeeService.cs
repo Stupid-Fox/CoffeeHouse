@@ -3,11 +3,6 @@ using CoffeeHouse.BLL.Models;
 using CoffeeHouse.BLL.Services.Intarfeces;
 using CoffeeHouse.DAL.Controllers;
 using CoffeeHouse.DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoffeeHouse.BLL.Services
 {
@@ -32,12 +27,10 @@ namespace CoffeeHouse.BLL.Services
         {
             return _mapper.Map<CoffeeEntity, CoffeeModel>(_repository.FindCoffee(id));
         }    
-
         public void AddNewCoffee (CoffeeModel item)
         {
             _repository.AddNewCoffee(_mapper.Map<CoffeeModel, CoffeeEntity>(item));
         }
-
         public void ChangeCoffeeInformation(CoffeeModel item)
         {
             _repository.ChangeCoffeeInformation(_mapper.Map<CoffeeModel, CoffeeEntity>(item));

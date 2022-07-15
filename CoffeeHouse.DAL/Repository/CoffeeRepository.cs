@@ -1,11 +1,5 @@
 ﻿using CoffeeHouse.DAL.Models;
 using CoffeeHouse.DAL.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace CoffeeHouse.DAL.Repository
 {
     public class CoffeeRepository : ICoffeeRepository
@@ -16,13 +10,11 @@ namespace CoffeeHouse.DAL.Repository
         {
             _context = context;
         }
-
      
         public IEnumerable<CoffeeEntity> TakeCoffeeHouseMenu()
         {
             return _context.Coffees.ToList();
         }
-
         
         public CoffeeEntity FindCoffee(int id)
         {
@@ -31,14 +23,12 @@ namespace CoffeeHouse.DAL.Repository
                 throw new ArgumentNullException("Object cannot be null", nameof(coffee));
             return coffee;
         }
-
    
         public void AddNewCoffee(CoffeeEntity coffee)
         {
             _context.Coffees.Add(coffee);
             _context.SaveChanges();
         }
-
       
         public void ChangeCoffeeInformation(CoffeeEntity coffee)
         {
