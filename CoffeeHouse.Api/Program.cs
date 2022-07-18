@@ -1,4 +1,5 @@
 using CoffeeHouse.Api.CoffeeViewMappers;
+using CoffeeHouse.Api.Middlewares;
 using CoffeeHouse.BLL.Mappers;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
