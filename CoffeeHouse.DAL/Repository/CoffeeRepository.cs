@@ -1,50 +1,55 @@
 ﻿using CoffeeHouse.DAL.Models;
 using CoffeeHouse.DAL.Controllers;
+using Microsoft.EntityFrameworkCore;
+
 namespace CoffeeHouse.DAL.Repository
 {
-    public class CoffeeRepository : ICoffeeRepository
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
-        private  CoffeeContext _context;
 
-        public void CoffeeController(CoffeeContext context)
+        CoffeeContext _context;
+        DbSet<TEntity> _dbSet;
+
+        public GenericRepository(CoffeeContext context)
         {
             _context = context;
+            _dbSet = context.Set<TEntity>();
         }
-     
-        public IEnumerable<CoffeeEntity> TakeCoffeeHouseMenu()
+
+        public IEnumerable<TEntity> Get()
         {
-            return _context.Coffees.ToList();
+            return _dbSet.AsNoTracking().ToList();
         }
-        
-        public CoffeeEntity FindCoffee(int id)
+
+        public TEntity FindById(int id)
         {
-            var coffee = _context.Coffees.Find(id);
-            if (coffee == null)
-                throw new ArgumentNullException("Object cannot be null", nameof(coffee));
-            return coffee;
+            var entity = _dbSet.Find(id);
+            if (entity == null)
+            {
+                throw new ArgumentNullException("Object cannot be null", nameof(entity));
+            }             
+            return entity;      
         }
-   
-        public void AddNewCoffee(CoffeeEntity coffee)
+
+        public void Create(TEntity item)
         {
-            _context.Coffees.Add(coffee);
+            _dbSet.Add(item);
             _context.SaveChanges();
         }
-      
-        public void ChangeCoffeeInformation(CoffeeEntity coffee)
+        public void Update(TEntity item)
         {
-            _context.Update(coffee);
+            _context.Entry(item).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        public void RemoveCoffee(int id)
+        public void Remove(TEntity item)
         {
-            var dbCoffee = _context.Coffees.Find(id);
-            _context.Coffees.Remove(dbCoffee);
-            _context.SaveChanges();
-            if (dbCoffee == null)
+            _dbSet.Remove(item);
+            if (_dbSet == null)
             {
-                throw new ArgumentNullException("Object cannot be null", nameof(dbCoffee));
+                throw new ArgumentNullException("Object cannot be null", nameof(_dbSet));
             }
+            _context.SaveChanges();
         }
     }
 }
