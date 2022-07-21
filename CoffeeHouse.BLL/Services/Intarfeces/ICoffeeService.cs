@@ -1,13 +1,13 @@
 ﻿using CoffeeHouse.BLL.Models;
 
 namespace CoffeeHouse.BLL.Services.Intarfeces
-{
-    public interface ICoffeeService
+{    
+    public interface IGenericService<TModel> where TModel : class
     {
-        IEnumerable<CoffeeModel> TakeCoffeeHouseMenu();
-        CoffeeModel FindCoffee(int id);
-        void AddNewCoffee(CoffeeModel item);
-        void ChangeCoffeeInformation(CoffeeModel item);
-        void RemoveCoffee(int id);
+        Task<IEnumerable<TModel>> GetAll();
+        Task<TModel> GetById(int id);
+        Task Create(TModel item);
+        Task Update(TModel item);
+        Task Delete(int id);
     }
 }

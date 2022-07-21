@@ -6,40 +6,55 @@ using CoffeeHouse.DAL.Models;
 
 namespace CoffeeHouse.BLL.Services
 {
-    internal class CoffeeService : ICoffeeService
-    {
-        private readonly IMapper _mapper;
+     public class GenericService<TModel, TEntity> : IGenericService<TModel>
+         where TModel : class
+         where TEntity : class
+     {
+            private readonly IGenericRepository<TEntity> _repository;
 
-        private readonly ICoffeeRepository _repository;
+            private readonly IMapper _mapper;
 
-        public CoffeeService(ICoffeeRepository repository, IMapper mapper)
-        {
-            _repository = repository;
-            _mapper = mapper;
+            public GenericService(IGenericRepository<TEntity> repository, IMapper mapper)
+            {
+                _repository = repository;
+                _mapper = mapper;
+            }
+
+            public async Task<IEnumerable<TModel>> GetAll()
+            {
+                return _mapper.Map<IEnumerable<TEntity>, IEnumerable<TModel>>(await _repository.GetAll());
+            }
+
+            public async Task<TModel> GetById(int id)
+            {
+                TEntity item = await _repository.GetById(id);
+
+                if (item == null)
+                    throw new ArgumentNullException("Object doesn't exist");
+                else
+                    return _mapper.Map<TEntity, TModel>(item);
+            }
+
+            public async Task Create(TModel item)
+            {
+                await _repository.Create(_mapper.Map<TModel, TEntity>(item));
+            }
+
+            public async Task Update(TModel item)
+            {
+                await _repository.Update(_mapper.Map<TModel, TEntity>(item));
+            }
+
+            public async Task Delete(int id)
+            {
+                TEntity pet = await _repository.GetById(id);
+
+                if (pet == null)
+                    throw new ArgumentNullException("Object doesn't exist");
+                else
+                    _repository.Delete(id);
+            }
+
         }
-
-        public IEnumerable<CoffeeModel> TakeCoffeeHouseMenu()
-        {
-            return _mapper.Map<IEnumerable<CoffeeEntity>, IEnumerable<CoffeeModel>>(_repository.TakeCoffeeHouseMenu());
-        }
-
-        public CoffeeModel FindCoffee(int id)
-        {
-            return _mapper.Map<CoffeeEntity, CoffeeModel>(_repository.FindCoffee(id));
-        }    
-        public void AddNewCoffee (CoffeeModel item)
-        {
-            _repository.AddNewCoffee(_mapper.Map<CoffeeModel, CoffeeEntity>(item));
-        }
-        public void ChangeCoffeeInformation(CoffeeModel item)
-        {
-            _repository.ChangeCoffeeInformation(_mapper.Map<CoffeeModel, CoffeeEntity>(item));
-        }
-
-        public void RemoveCoffee(int id)
-        {
-            _repository.RemoveCoffee(id);
-        }
-
-    }
+    
 }

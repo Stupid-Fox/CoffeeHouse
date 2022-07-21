@@ -8,7 +8,7 @@ namespace CoffeeHouse.Api.CoffeeViewMappers
     {
         public CoffeeViewProfile()
         {
-            CreateMap<CoffeeViewModel, CoffeeModel>();
+            CreateMap<CoffeeViewModel, CoffeeModel>().ReverseMap();
         }
     }
 }

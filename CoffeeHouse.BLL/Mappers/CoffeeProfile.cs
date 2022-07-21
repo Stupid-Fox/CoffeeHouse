@@ -8,7 +8,7 @@ namespace CoffeeHouse.BLL.Mappers
     {
         public CoffeeProfile()
         {
-            CreateMap<CoffeeModel, CoffeeEntity>();
+            CreateMap<CoffeeModel, CoffeeEntity>().ReverseMap();
         }
     }
 }

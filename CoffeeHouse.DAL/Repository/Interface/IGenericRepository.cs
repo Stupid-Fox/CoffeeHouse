@@ -4,11 +4,11 @@ namespace CoffeeHouse.DAL.Controllers
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
-        IEnumerable<TEntity> Get();
-        TEntity FindById(int id);
-        void Create(TEntity item);
-        void Update(TEntity item);
-        void Remove(TEntity item);
-       
+        Task<IEnumerable<TEntity>> GetAll();
+        Task<TEntity> GetById(int id);
+        Task Create(TEntity item);
+        Task Update(TEntity item);
+        Task Delete(int id);
+
     }
 }
