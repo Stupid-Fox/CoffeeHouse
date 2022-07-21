@@ -10,7 +10,8 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static void AddDatabase(this IServiceCollection services, IConfiguration config)
         {
-            services.AddScoped<ICoffeeRepository, CoffeeRepository>();
+            services.AddScoped<IGenericRepository<CoffeeEntity>, GenericRepository<CoffeeEntity>>();
+            services.AddScoped<IGenericRepository<CupEntity>, GenericRepository<CupEntity>>();
             services.AddDbContext<CoffeeContext>(options => 
             options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
         }
